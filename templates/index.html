@@ -1,0 +1,690 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>WineVision AI</title>
+
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- ==================================
+         SIDEBAR
+    =================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                W
+            </div>
+
+
+            <div>
+
+                <h2>
+                    WineVision
+                </h2>
+
+                <span>
+                    AI Classifier
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+
+            <a
+                href="#"
+                class="nav-item active"
+            >
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+
+                <span>◈</span>
+
+                Classification
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+
+                <span>▣</span>
+
+                Model Info
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-item"
+            >
+
+                <span>◉</span>
+
+                Predictions
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+
+            <div class="model-status">
+
+                <div class="status-dot"></div>
+
+
+                <div>
+
+                    <strong>
+                        Model Online
+                    </strong>
+
+                    <small>
+                        Random Forest v2.0
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- ==================================
+         MAIN
+    =================================== -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+
+            <div>
+
+                <p class="welcome">
+                    AI Classification System
+                </p>
+
+
+                <h1>
+                    Wine Classification
+                </h1>
+
+            </div>
+
+
+            <div class="top-actions">
+
+
+                <div class="accuracy-badge">
+
+                    <span class="green-dot"></span>
+
+                    Model Ready
+
+                </div>
+
+
+                <div class="profile">
+
+                    <div class="avatar">
+                        AI
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+        <!-- ==================================
+             STATS
+        =================================== -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    ◎
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Model
+                    </span>
+
+                    <h3>
+                        Random Forest
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    ✓
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Inputs
+                    </span>
+
+                    <h3>
+                        3 Features
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ↗
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Accuracy
+                    </span>
+
+                    <h3 id="modelAccuracy">
+                        --%
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    ⚡
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Status
+                    </span>
+
+                    <h3>
+                        Active
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==================================
+             CONTENT
+        =================================== -->
+
+        <section class="content-grid">
+
+
+            <!-- INPUT CARD -->
+
+            <div class="card prediction-card">
+
+
+                <div class="card-header">
+
+
+                    <div>
+
+                        <span class="section-label">
+                            PREDICTION
+                        </span>
+
+
+                        <h2>
+                            Enter Wine Features
+                        </h2>
+
+
+                        <p>
+                            Enter the three wine characteristics
+                            to classify the wine category.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <form
+                    id="predictionForm"
+                >
+
+
+                    <div class="form-grid">
+
+
+                        <!-- ALCOHOL -->
+
+                        <div class="input-group">
+
+                            <label>
+                                Alcohol
+                            </label>
+
+
+                            <input
+                                id="alcohol"
+                                type="number"
+                                step="0.01"
+                                placeholder="e.g. 13.2"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- MALIC ACID -->
+
+                        <div class="input-group">
+
+                            <label>
+                                Malic Acid
+                            </label>
+
+
+                            <input
+                                id="malic_acid"
+                                type="number"
+                                step="0.01"
+                                placeholder="e.g. 1.78"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- PROLINE -->
+
+                        <div class="input-group">
+
+                            <label>
+                                Proline
+                            </label>
+
+
+                            <input
+                                id="proline"
+                                type="number"
+                                step="1"
+                                placeholder="e.g. 1000"
+                                required
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="predict-btn"
+                    >
+
+                        <span>
+                            Predict Wine Class
+                        </span>
+
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+            <!-- ==================================
+                 RESULT CARD
+            =================================== -->
+
+            <div class="card result-card">
+
+
+                <div class="card-header">
+
+
+                    <div>
+
+                        <span class="section-label">
+                            RESULT
+                        </span>
+
+
+                        <h2>
+                            Prediction
+                        </h2>
+
+                    </div>
+
+
+                    <div class="result-status">
+                        AI
+                    </div>
+
+
+                </div>
+
+
+                <div class="result-content">
+
+
+                    <!-- CONFIDENCE -->
+
+                    <div class="result-circle">
+
+
+                        <div>
+
+                            <span id="confidence">
+                                --%
+                            </span>
+
+
+                            <small>
+                                Confidence
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <p class="prediction-label">
+                        Predicted Category
+                    </p>
+
+
+                    <h2 id="prediction">
+                        Awaiting Prediction
+                    </h2>
+
+
+                    <p
+                        class="result-description"
+                        id="description"
+                    >
+                        Enter the three features and click
+                        the prediction button to see the
+                        classification result.
+                    </p>
+
+
+                    <!-- RESULT INFO -->
+
+                    <div class="probability-section">
+
+
+                        <div class="probability-header">
+
+                            Prediction Summary
+
+                        </div>
+
+
+                        <div class="probability-item">
+
+
+                            <div class="probability-title">
+
+                                <span>
+                                    Selected Features
+                                </span>
+
+
+                                <strong>
+                                    3
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="probability-item">
+
+
+                            <div class="probability-title">
+
+                                <span>
+                                    Model
+                                </span>
+
+
+                                <strong>
+                                    Random Forest
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="probability-item">
+
+
+                            <div class="probability-title">
+
+                                <span>
+                                    Classes
+                                </span>
+
+
+                                <strong>
+                                    3
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==================================
+             INFO CARDS
+        =================================== -->
+
+        <section class="info-grid">
+
+
+            <div class="info-card">
+
+
+                <div class="info-icon">
+                    AI
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Machine Learning Model
+                    </h3>
+
+
+                    <p>
+                        A Random Forest classifier is trained
+                        using three selected wine features.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="info-card">
+
+
+                <div class="info-icon">
+                    3
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Input Features
+                    </h3>
+
+
+                    <p>
+                        Alcohol, Malic Acid and Proline are
+                        used for wine classification.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <span>
+                WineVision AI
+            </span>
+
+
+            <span>
+                Random Forest Classification System
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- ==================================
+     JAVASCRIPT
+=================================== -->
+
+<script src="/static/script.js"></script>
+
+
+</body>
+
+</html>
